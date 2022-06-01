@@ -274,10 +274,10 @@ if ($yenisifre==$yenisifretekrar) {
 	if ($update) {
 
 
-		header("Location:../sifremidegistir.php?durum=basarili");
+		header("Location:sifremidegistir.php?durum=basarili");
 	}
 	else{
-		header("Location:../sifremidegistir.php?durum=basarisiz");
+		header("Location:sifremidegistir.php?durum=basarisiz");
 	}
 
 }
