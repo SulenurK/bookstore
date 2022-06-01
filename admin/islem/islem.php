@@ -750,8 +750,7 @@ if (isset($_POST['kullaniciduzenle'])) {
 		$id=$_POST['kullaniciid'];
 	$duzenle=$baglanti->prepare("UPDATE kullanici SET 
 
-
-
+		kullanici_adi=:kullanici_adi,	
 		kullanici_adsoyad=:kullanici_adsoyad,
 		kullanici_mail=:kullanici_mail,
 		kullanici_adres=:kullanici_adres,
@@ -766,6 +765,7 @@ if (isset($_POST['kullaniciduzenle'])) {
 
 	$update=$duzenle->execute(array(
 
+		'kullanici_adi'=>$_POST['adi'],
 		'kullanici_adsoyad'=>$_POST['adsoyad'],
 		'kullanici_mail'=>$_POST['email'],
 		'kullanici_adres'=>$_POST['adres'],
@@ -777,8 +777,8 @@ if (isset($_POST['kullaniciduzenle'])) {
 
 
 if ($update) {
-	header("Location:../../kullanici.php?yuklenme=basarili");}
-else{header("Location:../../kullanici.php?yuklenme=basarisiz");}
+	header("Location:../uyeler?yuklenme=basarili");}
+else{header("Location:../uyeler?yuklenme=basarisiz");}
 
 
 }
@@ -924,7 +924,5 @@ if (isset($_GET['abonesil'])) {
 		Header("Location:../abone?yuklenme=hata");
 	}
 }
-
-
 
 ?>

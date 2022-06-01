@@ -13,7 +13,7 @@
                                         </div>
                                         <div class="shipping-text">
                                             <h2 class="beyazyazi">Ücretsiz Kargo</h2>
-                                            <p class="beyazyazi">Tüm Türkiyê'ye' ücretsiz kargo</p>
+                                            <p class="beyazyazi">Tüm Türkiye'ye ücretsiz kargo</p>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ $kategori->execute(array(
 ));
 while($kategorial=$kategori->fetch(PDO::FETCH_ASSOC)) {
  ?>
-                                            <li><a class="beyazyazi" href="urunler-<?=seolink($kategorial['kategori_adi']).'-'.$kategorial['kategori_id'] ?>"><?php echo $kategorial['kategori_adi'] ?></a></li>
+                                            <li><a class="beyazyazi" href="urunler-<?=seolink($kategorial['kategori_adi']).'-'.$kategorial['kategori_id'] ?>?sayfa=1"><?php echo $kategorial['kategori_adi'] ?></a></li>
                                            
                                           <?php } ?>
                                         </ul>
@@ -134,7 +134,7 @@ while($kategorial=$kategori->fetch(PDO::FETCH_ASSOC)) {
                                 <!-- Begin Footer Block Area -->
                                 <div class="col-lg-4">
                                     <div class="footer-block">
-                                        <h3 class="footer-block-title">Follow Us</h3>
+                                        <h3 class="footer-block-title">Bizi Takip Et</h3>
                                         <ul class="social-link">
                                             <li class="twitter">
                                                 <a href="https://twitter.com/" data-toggle="tooltip" target="_blank" title="Twitter">

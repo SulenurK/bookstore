@@ -100,12 +100,44 @@ if (isset($_POST['sepeteekle'])) {
 	$id=$_POST['urunid'];
 	$adet=$_POST['adet'];
 
+$urun=$baglanti->prepare("SELECT urun_adet FROM  urun where urun_id=:urun_id and urun_durum=:urun_durum");
+
+$urun->execute(array(
+	'urun_id'=>$id,
+    'urun_durum'=>1
+));
+
+$urunal=$urun->fetch(PDO::FETCH_ASSOC);
+	$urunsayisi=$urunal['urun_adet'];
+
+
+if($urunsayisi>=$adet){
 
 	setcookie('sepet['.$id.']', $adet, strtotime("+7day"));
 
+	$kalanurun=$urunsayisi-$adet;
+
+	$duzenle=$baglanti->prepare("UPDATE urun SET 
+
+		urun_adet=:urun_adet
+	
+		WHERE urun_id=$id
+
+		");
+
+
+	$update=$duzenle->execute(array(
+
+		'urun_adet'=>$kalanurun));
 
 
 	Header("Location:sepet?durum=eklendi");
+}
+else{
+
+Header("Location:sepet?durum=basarisiz");
+}
+
 }
 
 if (isset($_GET['sepetsil'])) {
@@ -113,6 +145,31 @@ if (isset($_GET['sepetsil'])) {
 	$id=$_GET['id'];
 	$adet=$_GET['adet'];
 
+	$urun=$baglanti->prepare("SELECT urun_adet FROM  urun where urun_id=:urun_id");
+
+	$urun->execute(array(
+	'urun_id'=>$id
+		));
+
+	$urunal=$urun->fetch(PDO::FETCH_ASSOC);
+	$urunsayisi=$urunal['urun_adet'];
+
+
+	$kalanurun=$urunsayisi+$adet;
+
+	$duzenle=$baglanti->prepare("UPDATE urun SET 
+
+	urun_adet=:urun_adet
+	
+	WHERE urun_id=$id
+
+			");
+
+
+	$update=$duzenle->execute(array(
+
+		'urun_adet'=>$kalanurun
+	));
 
 	setcookie('sepet['.$id.']', $adet, strtotime("-7day"));
 
@@ -165,10 +222,10 @@ if (isset($_POST['alisverisbitir'])) {
 	
 	if ($insert) {
 
-		header("Location:../index?durum=tesekkur");
+		header("Location:index?durum=tesekkur");
 	}
 	else{
-		header("Location:../index?durum=basarisiz");
+		header("Location:index?durum=basarisiz");
 	}
 
 }

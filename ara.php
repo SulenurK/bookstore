@@ -1,12 +1,7 @@
 <?php
 require_once 'header.php';
 
-$sayibul=$baglanti->prepare("SELECT * FROM  urun where kategori_id=:kategori_id and urun_durum=:urun_durum");
-                    $sayibul->execute(array(
-                      'kategori_id'=>$_GET['kategori_id'],
-                      'urun_durum'=>1
-
-                    ));
+$sayibul=$baglanti->prepare("SELECT * FROM  urun where CONCAT(urun_adi,urun_baslik,urun_yazar,urun_etiket) LIKE '%$aranacakkelime%'");
 
 $urunsayisi=$sayibul->rowCount();
 $kac=8;
@@ -14,7 +9,7 @@ $kac=8;
 $sayfa=$_GET['sayfa'];
 $sayfa1=($sayfa*$kac)-$kac;
 
-  $urun=$baglanti->prepare("SELECT * FROM  urun where kategori_id=:kategori_id and urun_durum=:urun_durum order by urun_id ASC limit $sayfa1, $kac");
+  $urun=$baglanti->prepare("SELECT * FROM  urun where CONCAT(urun_adi,urun_baslik,urun_yazar,urun_etiket) LIKE '%$aranacakkelime%' order by urun_id ASC limit $sayfa1, $kac");
                     $urun->execute(array(
                       'kategori_id'=>$_GET['kategori_id'],
                       'urun_durum'=>1

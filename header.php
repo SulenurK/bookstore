@@ -35,7 +35,7 @@ $var=$kullanicisor->rowCount();
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="images/icon.png">
         <!-- Material Design Iconic Font-V2.2.0 -->
         <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
         <!-- Font Awesome -->
@@ -102,6 +102,7 @@ $var=$kullanicisor->rowCount();
                                                     <li><a href="sepet">Sepetim</a></li>
                                                     <li><a href="siparisler">Siparişlerim</a></li>
                                                      <li><a href="sifremidegistir">Şifremi Değiştir</a></li>
+                                                    <li><a href="cikis">Çıkış</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -121,8 +122,8 @@ $var=$kullanicisor->rowCount();
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="index.html">
-                                        <img src="admin/resimler/logo/<?php $ayaral['logo'] ?>" alt="">
+                                    <a href="index">
+                                        <img src="admin/resimler/logo/<?php echo $ayaral['logo'] ?>" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -130,23 +131,9 @@ $var=$kullanicisor->rowCount();
                             <!-- Begin Header Middle Right Area -->
                             <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                                 <!-- Begin Header Middle Searchbox Area -->
-                                <form action="arama" class="hm-searchbox">
-                                    <select class="nice-select select-search-category">
-<?php $kategori=$baglanti->prepare("SELECT * FROM  kategori where kategori_durum=:kategori_durum and kategori_sira between 1 and 5");
-$kategori->execute(array(
-
-'kategori_durum' =>1
-
-));
-while($kategorial=$kategori->fetch(PDO::FETCH_ASSOC)) {
- ?>
-
-                                         <option value="<?php echo $kategorial['kategori_id'] ?>" ><?php echo $kategorial['kategori_adi'] ?></option>
-
-                                        <?php } ?>
-                                    </select>
-                                    <input type="text" name="aranacakkelime" placeholder="Arama">
-                                    <button name="kelimearama" class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                <form action="arama" method="POST" class="hm-searchbox">
+                                    <input type="text" name="aranacakkelime" placeholder="Aradığınız kelimeyi girin.">
+                                    <button><i class="fa fa-search"></i></button>
                                 </form>
                                 <!-- Header Middle Searchbox Area End Here -->
                                 <!-- Begin Header Middle Right Area -->
@@ -154,7 +141,7 @@ while($kategorial=$kategori->fetch(PDO::FETCH_ASSOC)) {
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
-                                            <a href="kullanici.php">
+                                            <a href="kullanici">
                                                <i class="fa fa-user-o"></i>
                                             </a>
                                             <p>Hesabım</p>
