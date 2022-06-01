@@ -274,4 +274,4 @@ while($kategorial=$kategori->fetch(PDO::FETCH_ASSOC)) {
                     </div>
                 </div>
                 <!-- Mobile Menu Area End Here -->
-            </header>}
+            </header>
